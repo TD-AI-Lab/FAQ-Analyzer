@@ -62,14 +62,14 @@ def render_sidebar(client: ApiClient, health: Optional[dict[str, Any]]) -> dict[
         st.markdown("## 🔄 Actions")
         col_a, col_b = st.columns(2)
         with col_a:
-            if st.button("Scrape", use_container_width=True):
+            if st.button("Scrape", use_container_width=True, key="empty_scrape_btn"):
                 _run_action(client, "scrape")
         with col_b:
-            if st.button("Clean", use_container_width=True):
+            if st.button("Clean", use_container_width=True, key="sidebar_clean_btn"):
                 _run_action(client, "clean")
 
         force = st.toggle("Force re-analyze", value=False, help="Recalcule le scoring même si déjà présent.")
-        if st.button("Analyze", use_container_width=True):
+        if st.button("Analyze", use_container_width=True, key="sidebar_analyze_btn"):
             _run_action(client, "analyze", force=force)
 
         st.markdown("---")
@@ -129,7 +129,7 @@ def _run_action(client: ApiClient, action: str, force: bool = False) -> None:
             st.session_state.last_refresh_ts = time.time()
             clear_all_caches()
             st.rerun()
-            
+
             # Pretty result
             created = res.get("created", 0)
             updated = res.get("updated", 0)

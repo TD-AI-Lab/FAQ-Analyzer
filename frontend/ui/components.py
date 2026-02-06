@@ -140,8 +140,7 @@ def _run_action(client: ApiClient, action: str, force: bool = False) -> None:
             status.update(label="Erreur ❌", state="error")
             st.error(f"Erreur backend: {e}")
             if e.details:
-                with st.expander("Détails", expanded=False):
-                    st.code(str(e.details))
+                st.text_area("Détails", str(e.details), height=200)
         except Exception as e:
             status.update(label="Erreur ❌", state="error")
             st.error(f"Erreur: {e}")

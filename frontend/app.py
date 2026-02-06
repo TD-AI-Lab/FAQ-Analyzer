@@ -28,11 +28,11 @@ def resolve_backend_url() -> str:
     # 3) .env (local)
     # 4) localhost fallback
     try:
-        secret_url = st.secrets.get("BACKEND_BASE_URL", None)  # type: ignore[attr-defined]
-        if secret_url:
-            return str(secret_url).rstrip("/")
-    except Exception:
-        pass
+        def resolve_backend_url() -> str:
+            env_url = os.getenv("BACKEND_BASE_URL")
+            if env_url:
+                return env_url.rstrip("/")
+            return "http://localhost:8000"
 
     env_url = os.getenv("BACKEND_BASE_URL")
     if env_url:

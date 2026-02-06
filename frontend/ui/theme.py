@@ -1,3 +1,7 @@
+from __future__ import annotations
+import streamlit as st
+
+
 def apply_theme() -> None:
     st.markdown(
         """

@@ -22,24 +22,10 @@ from utils.formatting import safe_get, normalize_text
 
 
 def resolve_backend_url() -> str:
-    # Priority:
-    # 1) Streamlit secrets (prod on Streamlit Cloud)
-    # 2) Environment variable
-    # 3) .env (local)
-    # 4) localhost fallback
-    try:
-        def resolve_backend_url() -> str:
-            env_url = os.getenv("BACKEND_BASE_URL")
-            if env_url:
-                return env_url.rstrip("/")
-            return "http://localhost:8000"
-
     env_url = os.getenv("BACKEND_BASE_URL")
     if env_url:
         return env_url.rstrip("/")
-
     return "http://localhost:8000"
-
 
 def init_session_state() -> None:
     if "backend_url" not in st.session_state:

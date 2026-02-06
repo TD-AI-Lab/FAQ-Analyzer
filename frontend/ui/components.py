@@ -159,7 +159,7 @@ def render_empty_state(client: ApiClient) -> None:
         if st.button("Analyze", use_container_width=True):
             _run_action(client, "analyze")
     with cols[3]:
-        st.caption("Tu peux lancer les actions dans l’ordre. L’UI se mettra à jour après chaque étape.")
+        st.caption("Lancer les actions dans l’ordre. L’UI se mettra à jour après chaque étape.")
 
 
 def render_faq_list(
